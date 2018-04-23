@@ -6,6 +6,15 @@ hints:
   - class: DockerRequirement
     dockerPull: wltrimbl/pfamlite
 
+requirements:
+    InitialWorkDirRequirement:
+        listing:
+            - $(inputs.h3m)
+            - $(inputs.h3i)
+            - $(inputs.h3f)
+            - $(inputs.h3p)
+
+
 inputs:
   - id: input_file
     type: File

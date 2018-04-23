@@ -1,6 +1,4 @@
 input_file:
   class: File
   path: sample.faa
-db_stem:
-  class: File
-  path: /Pfam-A.hmm.30
+db_stem: Pfam-A.hmm.30

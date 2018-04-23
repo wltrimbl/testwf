@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e 
+
 # takes amino acid fasta and searches against pfams
 
 # pfam-annotate.sh   <input.faa>  <databasestem>
@@ -12,16 +15,16 @@
 
 CPU=4
 file=$1
-db=$2
+db_prefix=$2
 filestem=$(basename $file)
 
-if [ "$db_" == "_" ] ; then
+if [ "${db_prefix}_" == "_" ] ; then
   echo "Missing second arguemnt, the database prefix"
   exit 1 
 fi
 
-if [ ! -e $db.h3f ] ; then
-  echo "Can't find database file $db.h3f!"
+if [ ! -e ${db_prefix}.h3f ] ; then
+  echo "Can't find database file ${db_prefix}.h3f!"
   exit 1 
 fi
 
@@ -33,7 +36,7 @@ fi
 
   
 echo "Searching $file for Pfam-A"
-time hmmscan --cpu $CPU --tblout $filestem.pfam.out $db $file > /dev/null
+time hmmscan --cpu $CPU --tblout $filestem.pfam.out ${db_prefix} $file > /dev/null
 
 if [ ! -e $filestem.pfam.out ] ; then
   echo "File missing: $filestem.pfam.out"

@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner --debug
-cwlVersion: cwl:draft-3
+cwlVersion: cwl:1.0
 class: CommandLineTool
 baseCommand: pfam-annotate.sh 
 hints:

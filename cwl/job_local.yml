@@ -1,0 +1,21 @@
+input_file:
+  class: File
+  path: sample.faa
+h3f:
+  class: File
+  path: Pfam-A.hmm.30.h3f
+h3i:
+  class: File
+  path: Pfam-A.hmm.30.h3i
+h3m:
+  class: File
+  path: Pfam-A.hmm.30.h3m
+h3p:
+  class: File
+  path: Pfam-A.hmm.30.h3p
+  
+  
+# curl 'http://shock.mg-rast.org/node/6fa12ee7-8cb6-421e-b6ed-02188cf7117b?download' > Pfam-A.hmm.30.h3f
+# curl 'http://shock.mg-rast.org/node/6e41f4bd-48f3-481f-8e4d-ee5f0ed8ba52?download' > Pfam-A.hmm.30.h3i
+# curl 'http://shock.mg-rast.org/node/9d65a4f2-0eaa-4f72-b8c7-77eadf297e5a?download' > Pfam-A.hmm.30.h3m
+# curl 'http://shock.mg-rast.org/node/282fecf7-66ba-4917-a9b0-efded02e86ae?download' > Pfam-A.hmm.30.h3p

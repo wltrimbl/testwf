@@ -4,7 +4,7 @@ class: CommandLineTool
 baseCommand: pfam-annotate.sh 
 hints:
   - class: DockerRequirement
-    dockerPull: wltrimbl/pfam3lite
+    dockerPull: wltrimbl/pfamlite
 
 inputs:
   - id: input_file

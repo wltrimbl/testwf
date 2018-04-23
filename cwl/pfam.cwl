@@ -21,7 +21,7 @@ inputs:
       basename: Pfam-A.hmm.30.h3f
     inputBinding:   
       position: 2
-      valueFrom: $(self.path)/$(self.basename)
+      valueFrom: $(self.path)/$(self.rootname)
       
       
   - id: h3i

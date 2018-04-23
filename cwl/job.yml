@@ -1,4 +1,4 @@
 input_file:
   class: File
   path: sample.faa
-db_stem: Pfam-A.hmm.30
+

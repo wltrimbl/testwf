@@ -12,12 +12,6 @@ inputs:
     inputBinding:
       position: 1
       valueFrom: $(inputs.input_file)
-
-  - id: db_stem
-    type: string
-    inputBinding:   
-      position: 2
-      valueFrom: $(inputs.db_stem)
       
   - id: h3f
     type: File
@@ -25,7 +19,11 @@ inputs:
       class: File
       location: "http://shock.mg-rast.org/node/6fa12ee7-8cb6-421e-b6ed-02188cf7117b?download"
       basename: Pfam-A.hmm.30.h3f
-    
+    inputBinding:   
+      position: 2
+      valueFrom: $(inputs.h3f.basename)
+      
+      
   - id: h3i
     type: File
     default: 

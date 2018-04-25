@@ -1,10 +1,19 @@
 #!/usr/bin/env cwl-runner --debug
-cwlVersion: cwl:draft-3
+cwlVersion: cwl:v1.0
 class: CommandLineTool
 baseCommand: pfam-annotate.sh 
 hints:
   - class: DockerRequirement
-    dockerPull: wltrimbl/pfam3lite
+    dockerPull: wltrimbl/pfamlite
+
+requirements:
+    InitialWorkDirRequirement:
+        listing:
+            - $(inputs.h3m)
+            - $(inputs.h3i)
+            - $(inputs.h3f)
+            - $(inputs.h3p)
+
 
 inputs:
   - id: input_file
@@ -12,12 +21,19 @@ inputs:
     inputBinding:
       position: 1
       valueFrom: $(inputs.input_file)
-
-  - id: db_stem
+      
+  - id: h3f
     type: File
     inputBinding:   
       position: 2
-      valueFrom: $(inputs.db_stem)
+      valueFrom: $(self.dirname)/$(self.nameroot)
+  - id: h3i
+    type: File
+  - id: h3m
+    type: File
+  - id: h3p
+    type: File
+    
 
 outputs:
   - id: outputfile

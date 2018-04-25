@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e 
+
 # takes amino acid fasta and searches against pfams
 
 # pfam-annotate.sh   <input.faa>  <databasestem>
@@ -12,24 +15,48 @@
 
 CPU=4
 file=$1
-db=$2
+db_prefix=$2
 filestem=$(basename $file)
-if [ ! -e $db.h3f ] 
-then
-echo "Can't find database file $db.h3f!"
-exit 1 
-fi
-if [ -e $file ] 
-then
-echo "Searching $file for Pfam-A"
-time hmmscan --cpu $CPU --tblout $filestem.pfam.out $db $file > /dev/null
 
+if [ "${db_prefix}_" == "_" ] ; then
+  echo "Missing second arguemnt, the database prefix"
+  exit 1 
+fi
+
+if [ ! -e ${db_prefix}.h3f ] ; then
+  echo "Can't find database file ${db_prefix}.h3f!"
+  exit 1 
+fi
+
+
+if [ ! -e $file ] ; then
+  echo "Input faa file $file is missing"
+  exit 1
+fi  
+
+  
+echo "Searching $file for Pfam-A"
+time hmmscan --cpu $CPU --tblout $filestem.pfam.out ${db_prefix} $file > /dev/null
+
+if [ ! -e $filestem.pfam.out ] ; then
+  echo "File missing: $filestem.pfam.out"
+  exit 1 
+fi
+  
 # the last field has variable numbers of spaces in it, so we have to count the field separators..
 cat $filestem.pfam.out      | grep -v '#'   | perl -ple 's/\s* - \s*/\t/; for($i=0; $i<16; $i++){ s/ \s*/\t/;}   ' > $filestem.pfam.out2
 
+if [ ! -e $filestem.pfam.out ] ; then
+  echo "File missing: $filestem.pfam.out2"
+  exit 1 
+fi
 # rank by column 8 (best 1 domain evalue), then take one for each new value of column 3 (query name)
 cat $filestem.pfam.out2  | sort -k8,8 -r | sort    -u  -k3,3 > $filestem.pfam.csv
-else
-echo "Input faa file $file is missing"
+
+if [ ! -e $filestem.pfam.out ] ; then
+  echo "File missing: $filestem.pfam.csv"
+  exit 1 
 fi
+  
+
 

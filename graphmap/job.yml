@@ -1,0 +1,6 @@
+input_ref: 
+  class: File
+  path: Phi-mut.fasta  
+input_query: 
+  class: File
+  path: Phix_R1_sample.fasta 

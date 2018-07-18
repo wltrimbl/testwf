@@ -1,3 +1,4 @@
+cwlVersion: cwl:v1.0
 input_file:
   class: File
   path: sample.faa

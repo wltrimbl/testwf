@@ -18,8 +18,13 @@ file=$1
 db_prefix=$2
 filestem=$(basename $file)
 
+if [ "${file}_" == "_" ] ; then
+  echo "Missing second argument, the amino acid file"
+  exit 1 
+fi
+
 if [ "${db_prefix}_" == "_" ] ; then
-  echo "Missing second arguemnt, the database prefix"
+  echo "Missing second argument, the database prefix"
   exit 1 
 fi
 

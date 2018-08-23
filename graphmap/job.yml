@@ -4,3 +4,4 @@ input_ref:
 input_query: 
   class: File
   path: Phix_R1_sample.fasta 
+output_sam: "Phix_R1_sample.fasta_vs_Phi-mut.fasta.sam"
